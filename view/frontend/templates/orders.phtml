@@ -1,0 +1,19 @@
+<?php /** @var \Plumrocket\OutOfStock\Block\AllUsersOrders $block */ ?>
+
+<?php foreach ($block->getAllCustomers() as $customer) : ?>
+<div>
+    <span>Customer name : <?= $customer->getName() ?> </span>
+    <ul>
+    <?php foreach ($block->getOrders($customer->getId()) as $order): ?>
+        <li><?= $order->getIncrementId() ?> - <?= $order->formatPrice($order->getGrandTotal()) ?> </li>
+        <li>
+            <ul>
+            <?php foreach ($order->getAllVisibleItems() as $item) : ?>
+                <li> <?= $item->getName() ?> - <?= $order->formatPrice($item->getPrice()) ?></li>
+            <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>
+<?php endforeach; ?>

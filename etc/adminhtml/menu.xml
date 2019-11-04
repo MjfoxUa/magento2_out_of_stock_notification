@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Plumrocket_OutOfStock::outofstock" title="Plumrocket" module="Plumrocket_OutOfStock" sortOrder="51" resource="Plumrocket_OutOfStock::outofstock"/>
-        <add id="Plumrocket_OutOfStock::post" title="Manage Posts" module="Mageplaza_HelloWorld" sortOrder="10" action="mageplaza_helloworld/post" resource="Plumrocket_OutOfStock::post" parent="Plumrocket_OutOfStock::outofstock"/>
-        <add id="Plumrocket_OutOfStock::hello_configuration" title="Out of Stock Notification" module="Plumrocket_OutOfStock" sortOrder="99" parent="Plumrocket_OutOfStock::outofstock" action="adminhtml/system_config/edit/section/outofstock" resource="Plumrocket_OutOfStock::outofstock_configuration"/>
+        <add id="Plumrocket_OutOfStock::post" title="Manage Posts" module="Plumrocket_OutOfStock" sortOrder="10" action="plumrocket_out_of_stock/post" resource="Plumrocket_OutOfStock::post" parent="Plumrocket_OutOfStock::outofstock"/>
+        <add id="Plumrocket_OutOfStock::hello_configuration" title="Configuration" module="Plumrocket_OutOfStock" sortOrder="99" parent="Plumrocket_OutOfStock::outofstock" action="adminhtml/system_config/edit/section/outofstock"  resource="Plumrocket_OutOfStock::outofstock_configuration"/>
     </menu>
 </config>

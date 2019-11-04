@@ -1,39 +1,16 @@
-<?php
-//$myBlock = \Magento\Framework\App\ObjectManager::getInstance()->get('Plumrocket\OutOfStock\Block\ProductStockForm');
-/** @var \Magento\Catalog\Model\Product $currentProduct */
+<?php  /** @var \Magento\Catalog\Model\Product $currentProduct */ ?>
 
+<?php if(!$block->getCurrentProduct()->isAvailable()) :?>
 
-if ($currentProduct = $block->getCurrentProduct()) {
-
-    var_dump($currentProduct->isAvailable());
-}
-?>
-<form class="form subscribe"
-      novalidate
-      action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
-      method="post"
-      data-mage-init='{"validation": {"errorClass": "mage-error"}}'
-      id="newsletter-validate-detail">
-    <div class="field newsletter">
-        <div class="control">
-            <label for="newsletter">
-                        <span class="label">
-                            <?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?>
-                        </span>
-                <input name="email" type="email" id="newsletter"
-                       placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>"
-                       data-mage-init='{"mage/trim-input":{}}'
-                       data-validate="{required:true, 'validate-email':true}"
-                />
-            </label>
-        </div>
-    </div>
-    <div class="actions">
-        <button class="action subscribe primary sr-only"
+<form class="out_of_stock_form" method="POST"  id="out_of_stock_notification">
+    <span class="label"><?= $block->escapeHtml(__('Sign Up for Out Of Stock Notification:')) ?></span>
+                <input name="email" type="email" id="out_of_stock_notification"
+                       placeholder="<?= $block->escapeHtml(__('Enter email for notification')) ?>"/>
+        <button class="out_of_stock_form__button"
                 title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"
                 type="submit"
                 aria-label="Subscribe">
             <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
         </button>
-    </div>
 </form>
+<?php endif; ?>
