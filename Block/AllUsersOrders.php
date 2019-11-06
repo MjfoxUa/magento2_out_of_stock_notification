@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Plumrocket\OutOfStock\Block;
-
 
 use Magento\Framework\View\Element\Template;
 
@@ -18,15 +16,15 @@ class AllUsersOrders extends \Magento\Framework\View\Element\Template
      */
     private $orderCollectionFactory;
 
-    public function __construct(Template\Context $context,
-                                \Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection,
-                                \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
-                                array $data = [])
-    {
+    public function __construct(
+        Template\Context $context,
+        \Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection,
+        \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
+        array $data = []
+    ) {
         parent::__construct($context, $data);
         $this->customerCollection = $customerCollection;
         $this->orderCollectionFactory = $orderCollectionFactory;
-
     }
 
     /**
@@ -50,5 +48,4 @@ class AllUsersOrders extends \Magento\Framework\View\Element\Template
             ->setOrder('created_at', 'desc');
         return $orders;
     }
-
 }

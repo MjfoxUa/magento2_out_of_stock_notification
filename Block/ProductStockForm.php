@@ -21,8 +21,7 @@ class ProductStockForm extends \Magento\Framework\View\Element\Template
         \Magento\Framework\Registry $registry,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $data = []
-    )
-    {
+    ) {
         $this->_registry = $registry;
         $this->storeManager = $storeManager;
         parent::__construct($context, $data);
