@@ -12,10 +12,12 @@ require(['jquery',], function ($) {
                 if (!data.status
                 ) {
                     $('#result_form')
+                        .removeClass()
                         .addClass('out_of_stock__error')
                         .html(data.result);
                 } else {
                     $('#result_form')
+                        .removeClass()
                         .addClass('out_of_stock__save')
                         .html(data.result);
                 }
