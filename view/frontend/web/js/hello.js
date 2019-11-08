@@ -9,7 +9,16 @@ require(['jquery',], function ($) {
             data: new FormData(this),
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                if (!data.status
+                ) {
+                    $('#result_form')
+                        .addClass('out_of_stock__error')
+                        .html(data.result);
+                } else {
+                    $('#result_form')
+                        .addClass('out_of_stock__save')
+                        .html(data.result);
+                }
             }
         });
     });
