@@ -1,12 +1,16 @@
 <?php  /** @var \Magento\Catalog\Model\Product $currentProduct */ ?>
 
+<?= $block->getCurrentProduct()->getName().'<br>'?>
+<?= $block->getCurrentProduct()->getSku().'<br>'?>
+<?= $block->getCurrentProduct()->getProductUrl().'<br>'?>
+
 <?php if(!$block->getCurrentProduct()->isAvailable()) :?>
     <form id="out_of_stock_form" action="<?= $block->getUrl('outofstock/index/saveform') ?>" method="post" >
         <label for="email">Out of stock notification :</label>
         <input type="email" name="email" placeholder="Add email for notification" id="email">
+
+        <input id="productName" name="productName" type="hidden" value="<?= $block->getCurrentProduct()->getName()?>">
+
         <input type="submit" value="Submit" >
     </form>
 <?php endif; ?>
-<script>
-    require(['Plumrocket_OutOfStock/js/hello']);
-</script>

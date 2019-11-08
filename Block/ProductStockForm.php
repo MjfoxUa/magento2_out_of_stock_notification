@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Plumrocket\OutOfStock\Block;
-
 
 class ProductStockForm extends \Magento\Framework\View\Element\Template
 {
@@ -31,11 +29,6 @@ class ProductStockForm extends \Magento\Framework\View\Element\Template
     {
         return $this->storeManager->getStore()->getBaseUrl();
     }
-
-    public function getEmailData()
-    {
-        return $this->getEmail();
-    }
     
     public function getCurrentCategory()
     {
@@ -46,4 +39,5 @@ class ProductStockForm extends \Magento\Framework\View\Element\Template
     {
         return $this->_registry->registry('current_product');
     }
+
 }
