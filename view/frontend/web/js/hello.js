@@ -11,11 +11,13 @@ require(['jquery',], function ($) {
             success: function (data) {
                 if (!data.status
                 ) {
+                    console.log('error');
                     $('#result_form')
                         .removeClass()
                         .addClass('out_of_stock__error')
                         .html(data.result);
                 } else {
+                    console.log('success');
                     $('#result_form')
                         .removeClass()
                         .addClass('out_of_stock__save')
