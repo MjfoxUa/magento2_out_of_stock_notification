@@ -3,14 +3,14 @@
 <?= $block->getCustomerName();?>
 <?php if(!$block->getCurrentProduct()->isAvailable()) :?>
     <form id="out_of_stock_form" action="<?= $block->getUrl('outofstock/index/saveform') ?>" method="post" >
-        <label for="email">Out of stock notification :</label>
-        <input type="email" name="email" placeholder="Add email for notification" id="email">
+        <label for="email"><?= (__('Out of stock notification :'))?></label>
+        <input type="email" name="email" placeholder="<?= (__('Add email for notification'))?>" id="email" class="out_of_stock_form__email">
         <input id="customerName" name="customerName" type="hidden" value=" ">
         <input id="productName" name="productName" type="hidden" value="<?= $block->getCurrentProduct()->getName()?>">
         <input id="productSku" name="productSku" type="hidden" value="<?= $block->getCurrentProduct()->getSku()?>">
         <input id="productUrl" name="productUrl" type="hidden" value="<?= $block->getCurrentProduct()->getProductUrl()?>">
         <input id="storeName" name="storeName" type="hidden" value="<?= $block->getStoreName()?>">
-        <input type="submit" value="Submit" >
+        <input type="submit" class="out_of_stock_form__button" value="<?= (__('Submit'))?>" >
     </form>
 <?php endif; ?>
 <div id="result_form" ></div>

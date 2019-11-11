@@ -5,3 +5,33 @@
 .out_of_stock__save{
     color: #308b22;
 }
+
+#out_of_stock_form {
+    font-size: 19px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;;
+}
+
+.out_of_stock_form__button{
+    background-image: none;
+    background: #1979c3;
+    margin-top: 3px;
+    border: 1px solid #1979c3;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    padding: 7px 15px;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border-radius: 4px;
+}
+
+.out_of_stock_form__button:hover{
+    background: #006bb4;
+}
+
+#out_of_stock_form,input[type="email"]{
+    width: 70%;
+}

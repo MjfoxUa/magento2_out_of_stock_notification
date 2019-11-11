@@ -24,14 +24,12 @@ class Saveform extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Controller\ResultFactory $resultFactory,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Customer\Model\Session $customerSession,
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $pageFactory
+        \Magento\Framework\App\Action\Context $context
     ) {
         $this->customerSession = $customerSession;
         $this->request = $request;
         $this->dataOutStock = $dataOutStock;
         $this->resultFactory = $resultFactory;
-        $this->_pageFactory = $pageFactory;
         return parent::__construct($context);
     }
     public function execute()
@@ -45,20 +43,20 @@ class Saveform extends \Magento\Framework\App\Action\Action
         $data = $this->request->getPost();
         if (!$data['email']) {
             $status = false;
-            $messagee = 'Please enter email';
+            $messagee = (__('Please enter email'));
         } else {
             $model = $this->dataOutStock->create();
             $model->addData([
-                "website" => $data['storeName'],
-                "product_name" => $data['productName'],
-                "product_url" => $data['productUrl'],
-                "customer_name" => $customerName,
-                "customer_email" => $data['email'],
-                "sku" => $data['productSku']
+                'website' => $data['storeName'],
+                'product_name' => $data['productName'],
+                'product_url' => $data['productUrl'],
+                'customer_name' => $customerName,
+                'customer_email' => $data['email'],
+                'sku' => $data['productSku']
             ]);
             $model->save();
             $status = true;
-            $messagee = "Your email ".$data['email']."has been saved for notification.";
+            $messagee = (__('Your email '.$data['email'].'has been saved for notification.'));
 
         }
         $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
