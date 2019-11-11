@@ -17,18 +17,29 @@ class ProductStockForm extends \Magento\Framework\View\Element\Template
      * @var \Magento\Customer\Model\Session
      */
     private $customerSession;
+    /**
+     * @var \Plumrocket\OutOfStock\Controller\Index\Config
+     */
+    private $config;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Framework\Registry $registry,
+        \Plumrocket\OutOfStock\Controller\Index\Config $config,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $data = []
     ) {
+        $this->config = $config;
         $this->customerSession = $customerSession;
         $this->_registry = $registry;
         $this->storeManager = $storeManager;
         parent::__construct($context, $data);
+    }
+
+    public function getEnableModul()
+    {
+        return $this->config->execute();
     }
 
     public function getBaseUrl()

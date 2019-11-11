@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="outofstock" sortOrder="10">
-            <label>Plumrocket Out Of Stock</label>
+        <tab id="outofstock" sortOrder="80">
+            <label>Plumrocket</label>
         </tab>
             <section id="outofstock" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
                 <class>separator-top</class>
-                    <label>Plumrocket Out Of Stock</label>
+                    <label>Out of stock</label>
                     <tab>outofstock</tab>
                     <resource>Plumrocket_OutOfStock::outofstock_config</resource>
                 <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Out Of Stock Configuration</label>
+                    <label>Configuration</label>
                     <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                         <label>Module Enable</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

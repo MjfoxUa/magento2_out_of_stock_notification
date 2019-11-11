@@ -6,7 +6,7 @@
 <body>
     <referenceContainer name="product.info.extrahint">
         <block class="Plumrocket\OutOfStock\Block\ProductStockForm" name="productstockform" template="Plumrocket_OutOfStock::out_of_stock_form.phtml" before="-"/>
-<!--        <block class="Plumrocket\OutOfStock\Block\AllUsersOrders" name="allusersorders" template="Plumrocket_OutOfStock::orders.phtml" before="-"/>-->
+        <!--<block class="Plumrocket\OutOfStock\Block\AllUsersOrders" name="allusersorders" template="Plumrocket_OutOfStock::orders.phtml" before="-"/>-->
     </referenceContainer>
 </body>
 </page>

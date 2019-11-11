@@ -7,7 +7,7 @@ use Magento\Store\Model\ScopeInterface;
 
 class Data extends AbstractHelper
 {
-    const XML_PATH_HELLOWORLD = 'outofstock/';
+    const XML_PATH_OUTOFSTOCK = 'outofstock/';
 
     public function getConfigValue($field, $storeId = null)
     {
@@ -19,6 +19,6 @@ class Data extends AbstractHelper
     public function getGeneralConfig($code, $storeId = null)
     {
 
-        return $this->getConfigValue(self::XML_PATH_HELLOWORLD .'general/'. $code, $storeId);
+        return $this->getConfigValue(self::XML_PATH_OUTOFSTOCK .'general/'. $code, $storeId);
     }
 }

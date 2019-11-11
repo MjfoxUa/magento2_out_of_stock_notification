@@ -16,6 +16,6 @@ class Config extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-        echo $this->helperData->getGeneralConfig('enable');
+        return $this->helperData->getGeneralConfig('enable');
     }
 }
