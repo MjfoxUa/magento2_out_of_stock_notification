@@ -1,24 +1,33 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Plumrocket_OutOfStock::outofstock"
+        <add id="Plumrocket_OutOfStock::main"
              title="Plumrocket"
              module="Plumrocket_OutOfStock"
-             sortOrder="51"
+             sortOrder="10"
              resource="Plumrocket_OutOfStock::outofstock"/>
-        <add id="Plumrocket_OutOfStock::post"
+
+        <add id="Plumrocket_OutOfStock::main_structure"
+             title="Out Of Stock"
+             module="Plumrocket_OutOfStock"
+             sortOrder="20"
+             parent="Plumrocket_OutOfStock::main"
+             resource="Plumrocket_OutOfStock::outofstock"/>
+
+        <add id="Plumrocket_OutOfStock::alert"
              title="Manage Stock Alerts"
              module="Plumrocket_OutOfStock"
-             sortOrder="10"
-             action="plumrocket_out_of_stock/post"
-             resource="Plumrocket_OutOfStock::post"
-             parent="Plumrocket_OutOfStock::outofstock"/>
-        <add id="Plumrocket_OutOfStock::hello_configuration"
+             sortOrder="50"
+             action="outofstock/stock/"
+             parent="Plumrocket_OutOfStock::main_structure"
+             resource="Plumrocket_OutOfStock::outofstock"/>
+
+        <add id="Plumrocket_OutOfStock::configuration"
              title="Configuration"
              module="Plumrocket_OutOfStock"
-             sortOrder="99"
-             parent="Plumrocket_OutOfStock::outofstock"
+             sortOrder="60"
+             parent="Plumrocket_OutOfStock::main_structure"
              action="adminhtml/system_config/edit/section/outofstock"
-             resource="Plumrocket_OutOfStock::outofstock_configuration"/>
+             resource="Plumrocket_OutOfStock::outofstock"/>
     </menu>
 </config>

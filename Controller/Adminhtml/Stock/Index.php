@@ -2,8 +2,9 @@
 
 namespace Plumrocket\OutOfStock\Controller\Adminhtml\Stock;
 
-class Manage extends \Magento\Backend\App\Action
+class Index extends \Magento\Backend\App\Action
 {
+    protected $resultPageFactory = false;
 
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -16,7 +17,7 @@ class Manage extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend((__('Manage Stock Alerts"')));
+        $resultPage->getConfig()->getTitle()->prepend((__('Out of Stock')));
         return $resultPage;
     }
 }
