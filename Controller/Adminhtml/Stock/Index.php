@@ -19,8 +19,6 @@ class Index extends \Magento\Backend\App\Action
         $this->_view->loadLayout();
                        $resultPage = $this->resultPageFactory->create();
                         $resultPage->getConfig()->getTitle()->prepend(__('Manage Out Of Stock'));
-                        //$resultPage->setActiveMenu('Plumrocket_OutOfStock::Grid');
-                        //$resultPage->addBreadcrumb(__('Grid Name Process'), __('Grid Name List'));
                         $this->_addContent($this->_view->getLayout()->createBlock('Plumrocket\OutOfStock\Block\Adminhtml\Stock\Grid'));
                         $this->_view->renderLayout();
     }

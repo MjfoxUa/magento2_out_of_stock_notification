@@ -5,18 +5,7 @@
                         <item name="deps" xsi:type="string">managestock_grid_listing.managestock_grid_listing_data_source</item>
                     </item>
                     <item name="spinner" xsi:type="string">spinner_columns</item>
-
-<!--                    <item name="buttons" xsi:type="array">-->
-<!--                        <item name="add" xsi:type="array">-->
-<!--                            <item name="name" xsi:type="string">add</item>-->
-<!--                            <item name="label" xsi:type="string" translate="true">Delete</item>-->
-<!--                            <item name="class" xsi:type="string">primary</item>-->
-<!--                            <item name="url" xsi:type="string">*/*/new</item>-->
-<!--                        </item>-->
-<!--                    </item>-->
-
                 </argument>
-
                 <dataSource name="nameOfDataSource">
                     <argument name="dataProvider" xsi:type="configurableObject">
                         <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
@@ -34,12 +23,11 @@
                         </argument>
                     </argument>
                 </dataSource>
-
     <massaction name="listing_massaction">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="selectProvider" xsi:type="string">listing.listing.columns.id</item>
-                <item name="indexField" xsi:type="string">id</item>
+                <item name="selectProvider" xsi:type="string">managestock_grid_listing.managestock_grid_listing.spinner_columns.ids</item>
+                <item name="indexField" xsi:type="string">product_id</item>
             </item>
         </argument>
         <action name="delete">
@@ -54,9 +42,8 @@
             </settings>
         </action>
     </massaction>
-
                 <columns name="spinner_columns">
-                    <selectionsColumn name="id">
+                    <selectionsColumn name="ids">
                         <argument name="data" xsi:type="array">
                             <item name="config" xsi:type="array">
                                 <item name="resizeEnabled" xsi:type="boolean">false</item>
@@ -149,5 +136,10 @@
                             </item>
                         </argument>
                     </column>
+                    <actionsColumn name="actions" class="Plumrocket\OutOfStock\Ui\Component\Listing\Column\RowUrlAction">
+                        <settings>
+                            <indexField>product_id</indexField>
+                        </settings>
+                    </actionsColumn>
                 </columns>
             </listing>
