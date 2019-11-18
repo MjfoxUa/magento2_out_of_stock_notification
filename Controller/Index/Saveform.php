@@ -1,8 +1,8 @@
 <?php
 
 namespace Plumrocket\OutOfStock\Controller\Index;
+
 use Magento\Framework\Controller\ResultFactory;
-use Plumrocket\OutOfStock\Model\DataOutStock;
 
 class Saveform extends \Magento\Framework\App\Action\Action
 {
@@ -34,10 +34,11 @@ class Saveform extends \Magento\Framework\App\Action\Action
     }
     public function execute()
     {
+
         if (!$this->customerSession->isLoggedIn()) {
-            $customerName = 'guest';
+            $customerId = 'guest';
         } else {
-            $customerName = $this->customerSession->getCustomer()->getName();
+            $customerId = $this->customerSession->getCustomer()->getId();
         }
 
         $data = $this->request->getPost();
@@ -47,17 +48,14 @@ class Saveform extends \Magento\Framework\App\Action\Action
         } else {
             $model = $this->dataOutStock->create();
             $model->addData([
-                'website' => $data['storeName'],
-                'product_name' => $data['productName'],
-                'product_url' => $data['productUrl'],
-                'customer_name' => $customerName,
+                'website_id' => $data['storeId'],
+                'product_id' => $data['productId'],
+                'customer_id' => $customerId,
                 'customer_email' => $data['email'],
-                'sku' => $data['productSku']
             ]);
             $model->save();
             $status = true;
             $messagee = (__('Your email '.$data['email'].'has been saved for notification.'));
-
         }
         $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         $resultJson->setData(['result' => $messagee, 'status' => $status]);

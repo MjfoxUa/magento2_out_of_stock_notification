@@ -16,9 +16,6 @@ class Index extends \Magento\Backend\App\Action
 
     public function execute()
     {
-//        $resultPage = $this->resultPageFactory->create();
-//        $resultPage->getConfig()->getTitle()->prepend((__('Out of Stock')));
-//        return $resultPage;
         $this->_view->loadLayout();
                        $resultPage = $this->resultPageFactory->create();
                         $resultPage->getConfig()->getTitle()->prepend(__('Manage Out Of Stock'));

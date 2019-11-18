@@ -2,7 +2,9 @@
 
 namespace Plumrocket\OutOfStock\Model;
 
-class DataOutStock extends \Magento\Framework\Model\AbstractModel
+use \Magento\Framework\Model\AbstractModel;
+
+class DataOutStock extends AbstractModel
 {
     public function _construct()
     {

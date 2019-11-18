@@ -1,14 +1,11 @@
 <?php
-
 namespace Plumrocket\OutOfStock\Block;
-
 class ProductStockForm extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var \Magento\Framework\Registry
      */
     protected $_registry;
-
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
@@ -21,7 +18,6 @@ class ProductStockForm extends \Magento\Framework\View\Element\Template
      * @var \Plumrocket\OutOfStock\Controller\Index\Config
      */
     private $config;
-
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Customer\Model\Session $customerSession,
@@ -37,34 +33,33 @@ class ProductStockForm extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
     }
 
+    public function getStoreId()
+    {
+        return $this->storeManager->getStore()->getId();
+    }
+
     public function getEnableModul()
     {
         return $this->config->execute();
     }
-
     public function getBaseUrl()
     {
         return $this->storeManager->getStore()->getBaseUrl();
     }
-
     public function getCustomerName()
     {
         return $this->customerSession->getCustomer()->getName();
     }
-
     public function getStoreName()
     {
         return $this->storeManager->getStore()->getName();
     }
-
     public function getCurrentCategory()
     {
         return $this->_registry->registry('current_category');
     }
-
     public function getCurrentProduct()
     {
         return $this->_registry->registry('current_product');
     }
-
 }

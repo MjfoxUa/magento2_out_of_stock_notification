@@ -28,32 +28,25 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 'ID'
             )
                 ->addColumn(
-                    'website',
+                    'website_id',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     255,
                     ['nullable => false'],
-                    'Website'
+                    'Website ID'
                 )
                 ->addColumn(
-                    'product_name',
+                    'product_id',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     255,
                     ['nullable => false'],
-                    'Product Name'
+                    'Product ID'
                 )
                 ->addColumn(
-                    'product_url',
+                    'customer_id',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     255,
                     ['nullable => false'],
-                    'Product URL'
-                )
-                ->addColumn(
-                    'customer_name',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    255,
-                    ['nullable => false'],
-                    'Customer Name'
+                    'Customer ID'
                 )
                 ->addColumn(
                     'customer_email',
@@ -63,25 +56,11 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     'Customer Email'
                 )
                 ->addColumn(
-                    'sku',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    255,
-                    ['nullable => false'],
-                    'SKU'
-                )
-                ->addColumn(
                     'created_at',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
                     null,
                     ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT],
                     'Created At'
-                )
-                ->addColumn(
-                    'updated_at',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
-                    null,
-                    ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT_UPDATE],
-                    'Updated At'
                 );
             $installer->getConnection()->createTable($table);
 

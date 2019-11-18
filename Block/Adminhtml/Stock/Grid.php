@@ -11,108 +11,133 @@ use Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory as DemoCollectio
 
 class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 {
-          protected $registry;
-          protected $_objectManager = null;
-          protected $demoFactory;
-          public function __construct(
-                        Context $context,
-                    Data $backendHelper,
-                    Registry $registry,
-                    ObjectManagerInterface $objectManager,
-                    DemoCollection $demoFactory,
-                    array $data = []
-          ) {
-                    $this->_objectManager = $objectManager;
-                    $this->registry = $registry;
-                    $this -> demoFactory = $demoFactory;
-                    parent::__construct($context, $backendHelper, $data);
-          }
-          protected function _construct()
-          {
+    protected $registry;
+    protected $_objectManager = null;
+    protected $demoFactory;
+
+    /**
+     * @var \Magento\Catalog\Model\ProductRepository
+     */
+    private $productRepository;
+    /**
+     * @var \Magento\Store\Model\WebsiteFactory
+     */
+    private $websiteFactory;
+
+    public function __construct(
+        \Magento\Catalog\Model\ProductRepository $productRepository,
+        \Magento\Store\Model\WebsiteFactory $websiteFactory,
+        Context $context,
+        Data $backendHelper,
+        Registry $registry,
+        ObjectManagerInterface $objectManager,
+        DemoCollection $demoFactory,
+        array $data = []
+    ) {
+        $this->_objectManager = $objectManager;
+        $this->registry = $registry;
+        $this -> demoFactory = $demoFactory;
+        $this->productRepository = $productRepository;
+        $this->websiteFactory = $websiteFactory;
+        parent::__construct($context, $backendHelper, $data);
+    }
+    protected function _construct()
+    {
               parent::_construct();
               $this->setId('index');
               $this->setDefaultSort('created_at');
               $this->setDefaultDir('DESC');
               $this->setSaveParametersInSession(true);
-          }
-          protected function _prepareCollection()
-          {
-              $demo = $this->demoFactory->create()
-                  ->addFieldToSelect('*');
-              $demo->addFieldToFilter('id', array('neq' => ''));
+    }
+    protected function _prepareCollection()
+    {
+              $demo = $this->demoFactory->create();
               $this->setCollection($demo);
               return parent::_prepareCollection();
-          }
-          protected function _prepareColumns()
-          {
-              $this->addColumn(
-                  'id',
-                  ['header' => __('ID'),
-                    'type' => 'checkbox',
-                    'name' => 'id',
-                    'align' => 'center',
-                    'index' => 'id',
-                  ]
-                );
+    }
+    protected function _prepareColumns()
+    {
               $this->addColumn(
                   'website',
                   ['header' => __('Website'),
-                      'type' => 'text',
+                      'type' => 'skip-list',
+                      'sortable' => false,
                       'name' => 'id',
                       'align' => 'center',
-                      'index' => 'website',
+                      'index' => 'name',
+                      //'options' => [ '1' => 'website_name' ]
                   ]
               );
               $this->addColumn(
                   'name',
-                  ['header' => __('Product Name'),
-                      'type' => 'text',
+                  ['header' => __('Name'),
+                      'type' => 'skip-list',
                       'name' => 'id',
                       'align' => 'center',
-                      'index' => 'product_name',
+                      'index' => 'value',
                   ]
               );
+                $this->addColumn(
+                    'sku',
+                    ['header' => __('SKU'),
+                        'type' => 'skip-list',
+                        'name' => 'id',
+                        'align' => 'center',
+                        'index' => 'sku',
+                    ]
+                );
+        $this->addColumn(
+            'max_crate_time',
+            ['header' => __('Last Subscription'),
+                'type' => 'skip-list',
+                'name' => 'id',
+                'align' => 'center',
+                'index' => 'max_crate_time',
+            ]
+        );
               $this->addColumn(
-                  'sku',
-                  ['header' => __('SKU'),
-                      'type' => 'text',
+                  'min_crate_time',
+                  ['header' => __('First Subscription'),
+                      'type' => 'skip-list',
                       'name' => 'id',
                       'align' => 'center',
-                      'index' => 'sku',
+                      'index' => 'min_crate_time',
                   ]
               );
-              $this->addColumn(
-                  'create_at',
-                  ['header' => __('Create at'),
-                      'type' => 'text',
-                      'name' => 'id',
-                      'align' => 'center',
-                      'index' => 'created_at',
-                  ]
-              );
-              $this->addColumn(
-                  'edit',
-                  [
-                      'header' => __('Edit'),
-                      'type' => 'action',
-                      'getter' => 'getId',
-                      'actions' => [
-                          [
-                              'caption' => __('Edit'),
-                              'url' => [
-                                  'base' => '*/*/edit',
-                                  'params' => ['store' => $this->getRequest()->getParam('store')]
-                              ],
-                              'field' => 'id'
-                          ]
-                      ],
-                      'filter' => false,
-                      'sortable' => false,
-                      'index' => 'stores',
-                      'header_css_class' => 'col-action',
-                      'column_css_class' => 'col-action'
-                  ]
-              );
-              return parent::_prepareColumns();
-          }
+                $this->addColumn(
+                    'awaiting',
+                    ['header' => __('Customer Awaiting Notification'),
+                        'type' => 'skip-list',
+                        'name' => 'id',
+                        'align' => 'center',
+                        'index' => 'awaiting',
+                    ]
+                );
+        return parent::_prepareColumns();
+    }
+
+    protected function _prepareMassaction()
+    {
+        $this->setMassactionIdField('product_id');
+        $this->getMassactionBlock()->setUseAjax(true);
+        $this->getMassactionBlock()->addItem(
+            'delete',
+            [
+                'label' => __('Delete'),
+                'url' => $this->getUrl('sales_rule/*/couponsMassDelete', ['_current' => true]),
+                'confirm' => __('Are you sure you want to delete the selected coupon(s)?'),
+                'complete' => 'refreshCouponCodesGrid'
+            ]
+        );
+        return $this;
+    }
+
+    /**
+     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $row
+     * @return string
+     */
+    public function getRowUrl($row)
+    {
+        return $this->getUrl('catalog/product/edit', ['id' => $row->getData('product_id')]);
+    }
 }
