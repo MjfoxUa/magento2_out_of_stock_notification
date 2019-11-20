@@ -5,6 +5,9 @@
             <general>
                 <enable>1</enable>
             </general>
+            <email>
+                <send_email>outofstock_alert_email_template</send_email>
+            </email>
         </outofstock>
     </default>
 </config>
