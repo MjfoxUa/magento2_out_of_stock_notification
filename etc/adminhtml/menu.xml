@@ -14,12 +14,14 @@
              parent="Plumrocket_OutOfStock::main"
              resource="Plumrocket_OutOfStock::outofstock"/>
 
-        <add id="Plumrocket_OutOfStock::alert"
-             title="Manage Stock Alerts"
+        <add id="Plumrocket_OutOfStock::uigrid"
+             title="Manage Stock Alerts "
+             translate="title"
              module="Plumrocket_OutOfStock"
-             sortOrder="50"
-             action="outofstock/stock/"
+             sortOrder="20"
+             dependsOnModule="Plumrocket_OutOfStock"
              parent="Plumrocket_OutOfStock::main_structure"
+             action="outofstock/index/"
              resource="Plumrocket_OutOfStock::outofstock"/>
 
         <add id="Plumrocket_OutOfStock::configuration"
@@ -30,14 +32,5 @@
              action="adminhtml/system_config/edit/section/outofstock"
              resource="Plumrocket_OutOfStock::outofstock"/>
 
-        <add id="Plumrocket_OutOfStock::uigrid"
-             title="Manage Stock Alerts UI"
-             translate="title"
-             module="Plumrocket_OutOfStock"
-             sortOrder="20"
-             dependsOnModule="Plumrocket_OutOfStock"
-             parent="Plumrocket_OutOfStock::main_structure"
-             action="outofstock/index/"
-             resource="Plumrocket_OutOfStock::outofstock"/>
     </menu>
 </config>

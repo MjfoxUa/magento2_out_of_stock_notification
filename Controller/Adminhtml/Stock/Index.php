@@ -19,7 +19,10 @@ class Index extends \Magento\Backend\App\Action
         $this->_view->loadLayout();
                        $resultPage = $this->resultPageFactory->create();
                         $resultPage->getConfig()->getTitle()->prepend(__('Manage Out Of Stock'));
-                        $this->_addContent($this->_view->getLayout()->createBlock('Plumrocket\OutOfStock\Block\Adminhtml\Stock\Grid'));
+                        $this->_addContent(
+                            $this->_view->getLayout()
+                                ->createBlock('Plumrocket\OutOfStock\Block\Adminhtml\Stock\Grid')
+                        );
                         $this->_view->renderLayout();
     }
 }

@@ -10,7 +10,6 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         $this->_init(
             "Plumrocket\OutOfStock\Model\DataOutStock",
             "Plumrocket\OutOfStock\Model\ResourceModel\DataOutStock");
-
     }
     protected function _initSelect()
     {

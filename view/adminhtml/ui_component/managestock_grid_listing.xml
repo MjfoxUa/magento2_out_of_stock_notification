@@ -6,6 +6,7 @@
                     </item>
                     <item name="spinner" xsi:type="string">spinner_columns</item>
                 </argument>
+
                 <dataSource name="nameOfDataSource">
                     <argument name="dataProvider" xsi:type="configurableObject">
                         <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
@@ -42,6 +43,7 @@
             </settings>
         </action>
     </massaction>
+
                 <columns name="spinner_columns">
                     <selectionsColumn name="ids">
                         <argument name="data" xsi:type="array">

@@ -1,5 +1,7 @@
 <?php
+
 namespace Plumrocket\OutOfStock\Block;
+
 class ProductStockForm extends \Magento\Framework\View\Element\Template
 {
     /**
