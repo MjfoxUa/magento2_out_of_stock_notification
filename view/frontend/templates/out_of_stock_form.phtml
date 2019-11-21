@@ -4,11 +4,11 @@
 <?php if($block->getEnableModul()) :?>
     <?php if(!$block->getCurrentProduct()->isAvailable()) :?>
         <form id="out_of_stock_form" action="<?= $block->getUrl('outofstock/index/saveform') ?>" method="post" >
-            <label for="email"><?= (__('Out of stock notification :'))?></label>
-            <input type="email" name="email" placeholder="<?= (__('Add email for notification'))?>" id="email" class="out_of_stock_form__email">
+            <label for="email"><?= (__('Subscribe to back in stock notification :'))?></label>
+            <input type="email" name="email" placeholder="<?= (__('Enter your email adress'))?>" id="email" class="out_of_stock_form__email">
             <input id="storeId" name="storeId" type="hidden" value="<?= $block->getStoreId()?>">
             <input id="productId" name="productId" type="hidden" value="<?= $block->getCurrentProduct()->getId()?>">
-            <input type="submit" class="out_of_stock_form__button" value="<?= (__('Submit'))?>" >
+            <input type="submit" class="out_of_stock_form__button" value="<?= (__('Subscribe'))?>" >
         </form>
     <?php endif; ?>
 <?php endif; ?>

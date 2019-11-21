@@ -1,0 +1,31 @@
+<?php  /** @var \Plumrocket\OutOfStock\Block\CustomerTab $block */ ?>
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            <?= (__('Store Name')) ?>
+        </th>
+        <th>
+            <?= (__('Product Name')) ?>
+        </th>
+        <th>
+           <?= (__('Email')) ?>
+        </th>
+        <th>
+            <?= (__('Subscription Time')) ?>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <? foreach ($block->getStockData($block->getCurrentCustomer()) as $data) : ?>
+    <tr>
+        <td><?= $block->getStoreNameById($data['website_id']) ?></td>
+        <td><a href="<?= $block->getProductUrl($data['product_id'])?>">
+                <?= $block->getProductNameById($data['product_id']) ?></a></td>
+        <td><?= $data['customer_email'] ?></td>
+        <td><?= $data['created_at'] ?></td>
+    </tr>
+    <? endforeach;?>
+    </tbody>
+</table>

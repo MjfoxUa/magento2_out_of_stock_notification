@@ -43,6 +43,10 @@ class Productsaveafter implements ObserverInterface
      * @var \Magento\Framework\Escaper
      */
     private $escaper;
+    /**
+     * @var \Magento\Catalog\Model\ProductFactory
+     */
+    private $productloader;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -52,9 +56,9 @@ class Productsaveafter implements ObserverInterface
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Escaper $escaper,
         \Magento\Framework\Registry $registry,
+        \Magento\Catalog\Model\ProductFactory $productloader,
         \Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
         \Plumrocket\OutOfStock\Controller\Index\Config $config
-
     ) {
 
         $this->registry = $registry;
@@ -66,31 +70,36 @@ class Productsaveafter implements ObserverInterface
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->escaper = $escaper;
+        $this->productloader = $productloader;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        if($this->config->execute()){
-        /**
-         * @var Product $product
-         */
-        if($product->isAvailable()){
-
+        if ($this->config->execute()) {
+            /**
+             * @var Product $product
+             */
+            $product = $observer->getProduct();
+            if ($product->isAvailable()) {
+                $productId = $product->getId();
+                $dataStock = $this->collectionFactory->create();
+                $dataFiltered = $dataStock->addFieldToFilter('product_id', $productId);
+                $dataMail['product_name'] = $product->getName();
+                $dataMail['product_url'] = $this->productloader->create()->load($productId)->getProductUrl();
+                $postObject = new \Magento\Framework\DataObject();
+                $postObject->setData($dataMail);
+                foreach ($dataFiltered->getData() as $data) {
+                    $this->sendOutoctockNotification($data['customer_email'], $postObject);
+                }
+                foreach ($dataFiltered as $item) {
+                    $item->delete();
+                }
+            }
         }
-        $product = $observer->getProduct();
-        $productId = $product->getId();
-        $dataStock = $this->collectionFactory->create();
-        $dataFiltered = $dataStock->addFieldToFilter('product_id', $productId);
-        $dataMail['product_name'] = $product->getName();
+    }
 
-        var_dump();
-        exit;
-
-        foreach ($dataFiltered->getData() as $data){
-            $emailData[] = $data['customer_email'];
-        }
-            $postObject = new \Magento\Framework\DataObject();
-            $postObject->setData($dataMail);
+    public function sendOutoctockNotification($email, $postObject)
+    {
         $sender = [
             'name' => $this->escaper->escapeHtml('Out Of Stock Notification'),
             'email' => $this->escaper->escapeHtml('cookies.lana@gmail.com'),
@@ -104,12 +113,10 @@ class Productsaveafter implements ObserverInterface
                     'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
                 ]
             )
-           ->setTemplateVars([ 'data' => $postObject ])
+            ->setTemplateVars([ 'data' => $postObject ])
             ->setFrom($sender)
-            ->addTo($emailData)
+            ->addTo($email)
             ->getTransport();
-            $transport->sendMessage();
-            return;
-        }
+        $transport->sendMessage();
     }
 }
