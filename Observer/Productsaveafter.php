@@ -2,7 +2,9 @@
 
 namespace Plumrocket\OutOfStock\Observer;
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\Event\ObserverInterface;
 
 class Productsaveafter implements ObserverInterface
@@ -47,8 +49,13 @@ class Productsaveafter implements ObserverInterface
      * @var \Magento\Catalog\Model\ProductFactory
      */
     private $productloader;
+    /**
+     * @var ProductRepositoryInterface
+     */
+    private $productRepository;
 
     public function __construct(
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
@@ -71,21 +78,30 @@ class Productsaveafter implements ObserverInterface
         $this->storeManager = $storeManager;
         $this->escaper = $escaper;
         $this->productloader = $productloader;
+        $this->productRepository = $productRepository;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         if ($this->config->execute()) {
+
             /**
              * @var Product $product
              */
             $product = $observer->getProduct();
-            if ($product->isAvailable()) {
+            $productAvailable = $this->productRepository->getById
+            ($product->getId(), false, null, true);
+            if ($productAvailable->isAvailable()) {
                 $productId = $product->getId();
                 $dataStock = $this->collectionFactory->create();
                 $dataFiltered = $dataStock->addFieldToFilter('product_id', $productId);
                 $dataMail['product_name'] = $product->getName();
-                $dataMail['product_url'] = $this->productloader->create()->load($productId)->getProductUrl();
+                $dataMail['product_url'] = $this->productloader->create()
+                    ->load($productId)
+                    ->setStoreId($this->storeManager
+                        ->getDefaultStoreView()
+                        ->getId())
+                    ->getProductUrl();
                 $postObject = new \Magento\Framework\DataObject();
                 $postObject->setData($dataMail);
                 foreach ($dataFiltered->getData() as $data) {

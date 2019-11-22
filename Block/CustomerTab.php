@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Plumrocket\OutOfStock\Block;
 
 class CustomerTab extends \Magento\Framework\View\Element\Template

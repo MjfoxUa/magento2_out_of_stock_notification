@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-    <? foreach ($block->getStockData($block->getCurrentCustomer()) as $data) : ?>
+    <?php foreach ($block->getStockData($block->getCurrentCustomer()) as $data) : ?>
     <tr>
         <td><?= $block->getStoreNameById($data['website_id']) ?></td>
         <td><a href="<?= $block->getProductUrl($data['product_id'])?>">
@@ -26,6 +26,6 @@
         <td><?= $data['customer_email'] ?></td>
         <td><?= $data['created_at'] ?></td>
     </tr>
-    <? endforeach;?>
+    <?php endforeach;?>
     </tbody>
 </table>
