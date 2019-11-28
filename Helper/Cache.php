@@ -4,6 +4,7 @@ namespace Plumrocket\OutOfStock\Helper;
 
 use Magento\Framework\App\Helper;
 
+
 class Cache extends Helper\AbstractHelper
 {
     const CACHE_TAG = 'PLUMROCKET';
@@ -30,7 +31,7 @@ class Cache extends Helper\AbstractHelper
     public function __construct(
         Helper\Context $context,
         \Magento\Framework\App\Cache $cache,
-        \Magento\Framework\App\Cache\State $cacheState,
+        \Magento\Framework\App\Cache\StateInterface $cacheState,
         \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         $this->cache = $cache;
@@ -59,8 +60,7 @@ class Cache extends Helper\AbstractHelper
         if ($this->cacheState->isEnabled(self::CACHE_ID)) {
             return $this->cache->load($cacheId);
         }
-
-        return FALSE;
+        return false;
     }
 
     /**
@@ -73,8 +73,8 @@ class Cache extends Helper\AbstractHelper
     {
         if ($this->cacheState->isEnabled(self::CACHE_ID)) {
             $this->cache->save($data, $cacheId, array(self::CACHE_TAG), $cacheLifetime);
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 }

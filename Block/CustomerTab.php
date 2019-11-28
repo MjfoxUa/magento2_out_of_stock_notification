@@ -32,6 +32,10 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
      * @var \Magento\Catalog\Model\ProductFactory
      */
     private $productloader;
+    /**
+     * @var \Plumrocket\OutOfStock\Helper\Cache
+     */
+    private $cacheHelper;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -42,8 +46,10 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
         \Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
         \Plumrocket\OutOfStock\Controller\Index\Config $config,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Plumrocket\OutOfStock\Helper\Cache $cacheHelper,
         array $data = []
     ) {
+        $this->cacheHelper = $cacheHelper;
         $this->productloader = $productloader;
         $this->productRepository = $productRepository;
         $this->collectionFactory = $collectionFactory;
@@ -63,7 +69,14 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
     {
         $outOfStock = $this->collectionFactory->create();
         $outOfStock->addFieldToFilter('customer_id',$id);
-        return $outOfStock->getData();
+        $cacheId =$this->cacheHelper->getId('data_outofstock');
+        if($cache = $this->cacheHelper->load($cacheId)){
+            $cache = json_decode($cache, true);
+            return $cache;
+        }
+        $outOfStockData = $outOfStock->getData();
+        $this->cacheHelper->save(json_encode($outOfStockData),$cacheId);
+        return $outOfStockData;
     }
 
     public function getProductNameById($id)
