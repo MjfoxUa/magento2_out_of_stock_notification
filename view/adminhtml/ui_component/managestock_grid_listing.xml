@@ -43,7 +43,6 @@
             </settings>
         </action>
     </massaction>
-
                 <columns name="spinner_columns">
                     <selectionsColumn name="ids">
                         <argument name="data" xsi:type="array">

@@ -4,7 +4,6 @@ namespace Plumrocket\OutOfStock\Observer;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
-use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\Event\ObserverInterface;
 
 class Productsaveafter implements ObserverInterface
@@ -53,6 +52,10 @@ class Productsaveafter implements ObserverInterface
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     public function __construct(
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
@@ -65,7 +68,8 @@ class Productsaveafter implements ObserverInterface
         \Magento\Framework\Registry $registry,
         \Magento\Catalog\Model\ProductFactory $productloader,
         \Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
-        \Plumrocket\OutOfStock\Controller\Index\Config $config
+        \Plumrocket\OutOfStock\Controller\Index\Config $config,
+        \Psr\Log\LoggerInterface $logger
     ) {
 
         $this->registry = $registry;
@@ -79,6 +83,7 @@ class Productsaveafter implements ObserverInterface
         $this->escaper = $escaper;
         $this->productloader = $productloader;
         $this->productRepository = $productRepository;
+        $this->logger = $logger;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
