@@ -1,6 +1,6 @@
 <?php
 
-namespace Plumrocket\OutOfStock\Controller\Index;
+namespace Relieve\OutOfStock\Controller\Index;
 
 use Magento\Framework\Controller\ResultFactory;
 
@@ -28,8 +28,8 @@ class Saveform extends \Magento\Framework\App\Action\Action
     private $logger;
 
     public function __construct(
-        \Plumrocket\OutOfStock\Model\DataOutStockFactory $dataOutStock,
-        \Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
+        \Relieve\OutOfStock\Model\DataOutStockFactory $dataOutStock,
+        \Relieve\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
         \Magento\Framework\Controller\ResultFactory $resultFactory,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Customer\Model\Session $customerSession,

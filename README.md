@@ -1,10 +1,6 @@
-# Mage2 Module Plumrocket OutOfStock
+#© Relieve OUT OF STOCK
 
-    `plumrocket/module-outofstock`
+ - Let customers subscribe for out of stock products.
+ - Notificate subscriberіs when products in stock.
 
-### Zip file
-
- - Unzip the zip file in `app/code/Plumrocket`
- - Enable the module by running `php bin/magento module:enable Plumrocket_OutOfStock`
- - Apply database updates by running `php bin/magento setup:upgrade`\*
- - Flush the cache by running `php bin/magento cache:flush`
+**Magento 2 Module** 

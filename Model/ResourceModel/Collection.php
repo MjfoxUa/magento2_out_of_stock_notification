@@ -1,16 +1,31 @@
 <?php
+/**
+ * Relieve Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     Relieve_OutOfStock
+ * @copyright   Copyright (c) 2021 Relieve Inc.
+ * @license     End-user License Agreement
+ */
 
+declare(strict_types=1);
 
-namespace Plumrocket\OutOfStock\Model\ResourceModel;
+namespace Relieve\OutOfStock\Model\ResourceModel;
 
-class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+
+class Collection extends AbstractCollection
 {
     public function _construct()
     {
         $this->_init(
-            "Plumrocket\OutOfStock\Model\DataOutStock",
-            "Plumrocket\OutOfStock\Model\ResourceModel\DataOutStock");
+            "Relieve\OutOfStock\Model\DataOutStock",
+            "Relieve\OutOfStock\Model\ResourceModel\DataOutStock");
     }
+
+    /**
+     * @return $this|Collection|void
+     */
     protected function _initSelect()
     {
         parent::_initSelect();

@@ -2,7 +2,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="managestock_grid_listing_data_source" xsi:type="string">Plumrocket\OutOfStock\Model\ResourceModel\ManageStock\Grid\Collection</item>
+                <item name="managestock_grid_listing_data_source" xsi:type="string">Relieve\OutOfStock\Model\ResourceModel\ManageStock\Grid\Collection</item>
             </argument>
         </arguments>
     </type>

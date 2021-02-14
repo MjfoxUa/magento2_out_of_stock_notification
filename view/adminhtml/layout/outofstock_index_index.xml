@@ -6,7 +6,7 @@
     <body>
         <referenceBlock name="menu">
             <action method="setActive">
-                <argument name="itemId" xsi:type="string">Plumrocket_OutOfStock::uigrid</argument>
+                <argument name="itemId" xsi:type="string">Relieve_OutOfStock::uigrid</argument>
             </action>
         </referenceBlock>
         <referenceContainer name="content">

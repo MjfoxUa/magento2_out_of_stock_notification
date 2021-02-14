@@ -137,7 +137,7 @@
                             </item>
                         </argument>
                     </column>
-                    <actionsColumn name="actions" class="Plumrocket\OutOfStock\Ui\Component\Listing\Column\RowUrlAction">
+                    <actionsColumn name="actions" class="Relieve\OutOfStock\Ui\Component\Listing\Column\RowUrlAction">
                         <settings>
                             <indexField>product_id</indexField>
                         </settings>

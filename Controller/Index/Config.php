@@ -1,6 +1,6 @@
 <?php
 
-namespace Plumrocket\OutOfStock\Controller\Index;
+namespace Relieve\OutOfStock\Controller\Index;
 
 class Config extends \Magento\Framework\App\Action\Action
 {
@@ -8,7 +8,7 @@ class Config extends \Magento\Framework\App\Action\Action
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Plumrocket\OutOfStock\Helper\Data $helperData
+        \Relieve\OutOfStock\Helper\Data $helperData
     ) {
         $this->helperData = $helperData;
         return parent::__construct($context);

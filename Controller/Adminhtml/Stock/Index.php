@@ -1,6 +1,6 @@
 <?php
 
-namespace Plumrocket\OutOfStock\Controller\Adminhtml\Stock;
+namespace Relieve\OutOfStock\Controller\Adminhtml\Stock;
 
 class Index extends \Magento\Backend\App\Action
 {
@@ -21,7 +21,7 @@ class Index extends \Magento\Backend\App\Action
                         $resultPage->getConfig()->getTitle()->prepend(__('Manage Out Of Stock'));
                         $this->_addContent(
                             $this->_view->getLayout()
-                                ->createBlock('Plumrocket\OutOfStock\Block\Adminhtml\Stock\Grid')
+                                ->createBlock('Relieve\OutOfStock\Block\Adminhtml\Stock\Grid')
                         );
                         $this->_view->renderLayout();
     }

@@ -1,7 +1,7 @@
 var config = {
     map: {
         '*': {
-            hello: 'Plumrocket_OutOfStock/js/hello'
+            hello: 'Relieve_OutOfStock/js/hello'
         }
     }
 };

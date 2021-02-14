@@ -1,10 +1,10 @@
 <?php
 
-namespace Plumrocket\OutOfStock\Controller\Adminhtml\Stock;
+namespace Relieve\OutOfStock\Controller\Adminhtml\Stock;
 
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
 use Magento\Backend\App\Action\Context;
-use Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory;
+use Relieve\OutOfStock\Model\ResourceModel\CollectionFactory;
 use Magento\Ui\Component\MassAction\Filter;
 use Magento\Framework\Controller\ResultFactory;
 

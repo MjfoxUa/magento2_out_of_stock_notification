@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Plumrocket\OutOfStock\Ui\Component\Listing\Column;
+namespace Relieve\OutOfStock\Ui\Component\Listing\Column;
 
 
 class RowUrlAction extends \Magento\Ui\Component\Listing\Columns\Column
 {
-    const URL_PATH_EDIT = 'Plumrocket/RowUrl/edit';
+    const URL_PATH_EDIT = 'Relieve/RowUrl/edit';
 
     /**
      * URL builder

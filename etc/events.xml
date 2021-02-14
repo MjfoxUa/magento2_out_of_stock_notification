@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="catalog_product_save_commit_after">
-        <observer name="alert_of_stock" instance="Plumrocket\OutOfStock\Observer\Productsaveafter" />
+        <observer name="alert_of_stock" instance="Relieve\OutOfStock\Observer\Productsaveafter" />
     </event>
 </config>

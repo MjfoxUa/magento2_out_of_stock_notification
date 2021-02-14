@@ -7,7 +7,7 @@
             </action>
         </referenceBlock>
         <referenceContainer name="content">
-            <block class="Plumrocket\OutOfStock\Block\CustomerTab" name="customer_tab" template="Plumrocket_OutOfStock::customer_tab.phtml">
+            <block class="Relieve\OutOfStock\Block\CustomerTab" name="customer_tab" template="Relieve_OutOfStock::customer_tab.phtml">
             </block>
         </referenceContainer>
     </body>

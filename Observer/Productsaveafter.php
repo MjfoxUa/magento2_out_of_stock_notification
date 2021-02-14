@@ -1,6 +1,6 @@
 <?php
 
-namespace Plumrocket\OutOfStock\Observer;
+namespace Relieve\OutOfStock\Observer;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
@@ -13,11 +13,11 @@ class Productsaveafter implements ObserverInterface
      */
     private $registry;
     /**
-     * @var Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory
+     * @var Relieve\OutOfStock\Model\ResourceModel\CollectionFactory
      */
     private $collectionFactory;
     /**
-     * @var \Plumrocket\OutOfStock\Controller\Index\Config
+     * @var \Relieve\OutOfStock\Controller\Index\Config
      */
     private $config;
     /**
@@ -67,8 +67,8 @@ class Productsaveafter implements ObserverInterface
         \Magento\Framework\Escaper $escaper,
         \Magento\Framework\Registry $registry,
         \Magento\Catalog\Model\ProductFactory $productloader,
-        \Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
-        \Plumrocket\OutOfStock\Controller\Index\Config $config,
+        \Relieve\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
+        \Relieve\OutOfStock\Controller\Index\Config $config,
         \Psr\Log\LoggerInterface $logger
     ) {
 

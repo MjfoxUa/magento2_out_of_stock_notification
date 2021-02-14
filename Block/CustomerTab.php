@@ -1,52 +1,90 @@
 <?php
+/**
+ * Relieve Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     Relieve_OutOfStock
+ * @copyright   Copyright (c) 2021 Relieve Inc.
+ * @license     End-user License Agreement
+ */
 
-namespace Plumrocket\OutOfStock\Block;
+declare(strict_types=1);
 
-class CustomerTab extends \Magento\Framework\View\Element\Template
+namespace Relieve\OutOfStock\Block;
+
+use Magento\Backend\Block\Template\Context;
+use Magento\Catalog\Model\ProductFactory;
+use Magento\Catalog\Model\ProductRepository;
+use Magento\Customer\Model\Session;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Element\Template;
+use Magento\Store\Model\StoreManagerInterface;
+use Relieve\OutOfStock\Controller\Index\Config;
+use Relieve\OutOfStock\Helper\Cache;
+use Relieve\OutOfStock\Model\ResourceModel\CollectionFactory;
+
+class CustomerTab extends Template
 {
     /**
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     protected $_registry;
+
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     private $storeManager;
+
     /**
-     * @var \Magento\Customer\Model\Session
+     * @var Session
      */
     private $customerSession;
+
     /**
-     * @var \Plumrocket\OutOfStock\Controller\Index\Config
+     * @var Config
      */
     private $config;
+
     /**
-     * @var \Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory
+     * @var CollectionFactory
      */
     private $collectionFactory;
+
     /**
-     * @var \Magento\Catalog\Model\ProductRepository
+     * @var ProductRepository
      */
     private $productRepository;
     /**
-     * @var \Magento\Catalog\Model\ProductFactory
+     * @var ProductFactory
      */
     private $productloader;
     /**
-     * @var \Plumrocket\OutOfStock\Helper\Cache
+     * @var Cache
      */
     private $cacheHelper;
 
+    /**
+     * @param \Magento\Backend\Block\Template\Context                   $context
+     * @param \Magento\Customer\Model\Session                           $customerSession
+     * @param \Magento\Framework\Registry                               $registry
+     * @param \Magento\Catalog\Model\ProductRepository                  $productRepository
+     * @param \Magento\Catalog\Model\ProductFactory                     $productloader
+     * @param \Relieve\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory
+     * @param \Relieve\OutOfStock\Controller\Index\Config               $config
+     * @param \Magento\Store\Model\StoreManagerInterface                $storeManager
+     * @param \Relieve\OutOfStock\Helper\Cache                          $cacheHelper
+     * @param array                                                     $data
+     */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Customer\Model\Session $customerSession,
-        \Magento\Framework\Registry $registry,
-        \Magento\Catalog\Model\ProductRepository $productRepository,
-        \Magento\Catalog\Model\ProductFactory $productloader,
-        \Plumrocket\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory,
-        \Plumrocket\OutOfStock\Controller\Index\Config $config,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Plumrocket\OutOfStock\Helper\Cache $cacheHelper,
+        Context $context,
+        Session $customerSession,
+        Registry $registry,
+        ProductRepository $productRepository,
+        ProductFactory $productloader,
+        CollectionFactory $collectionFactory,
+        Config $config,
+        StoreManagerInterface $storeManager,
+        Cache $cacheHelper,
         array $data = []
     ) {
         $this->cacheHelper = $cacheHelper;
@@ -96,3 +134,4 @@ class CustomerTab extends \Magento\Framework\View\Element\Template
         return  $product->getProductUrl();
     }
 }
+

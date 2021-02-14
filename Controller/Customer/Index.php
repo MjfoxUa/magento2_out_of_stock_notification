@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Plumrocket\OutOfStock\Controller\Customer;
+namespace Relieve\OutOfStock\Controller\Customer;
 
 class Index extends \Magento\Framework\App\Action\Action
 {

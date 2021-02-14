@@ -1,6 +1,6 @@
 <?php
 
-namespace Plumrocket\OutOfStock\Controller\Adminhtml\Index;
+namespace Relieve\OutOfStock\Controller\Adminhtml\Index;
 
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\App\Action\Action;

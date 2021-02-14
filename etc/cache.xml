@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
-    <type name="plumrocket" translate="label,description" instance="Plumrocket\OutOfStock\Model\Cache\Type">
-        <label>Plumrocket cache</label>
-        <description>Plumrocket cache.</description>
+    <type name="plumrocket" translate="label,description" instance="Relieve\OutOfStock\Model\Cache\Type">
+        <label>Relieve cache</label>
+        <description>Relieve cache.</description>
     </type>
 </config>

@@ -1,36 +1,36 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Plumrocket_OutOfStock::main"
-             title="Plumrocket"
-             module="Plumrocket_OutOfStock"
+        <add id="Relieve_OutOfStock::main"
+             title="Relieve"
+             module="Relieve_OutOfStock"
              sortOrder="10"
-             resource="Plumrocket_OutOfStock::outofstock"/>
+             resource="Relieve_OutOfStock::outofstock"/>
 
-        <add id="Plumrocket_OutOfStock::main_structure"
+        <add id="Relieve_OutOfStock::main_structure"
              title="Out Of Stock"
-             module="Plumrocket_OutOfStock"
+             module="Relieve_OutOfStock"
              sortOrder="20"
-             parent="Plumrocket_OutOfStock::main"
-             resource="Plumrocket_OutOfStock::outofstock"/>
+             parent="Relieve_OutOfStock::main"
+             resource="Relieve_OutOfStock::outofstock"/>
 
-        <add id="Plumrocket_OutOfStock::uigrid"
+        <add id="Relieve_OutOfStock::uigrid"
              title="Manage Stock Alerts "
              translate="title"
-             module="Plumrocket_OutOfStock"
+             module="Relieve_OutOfStock"
              sortOrder="20"
-             dependsOnModule="Plumrocket_OutOfStock"
-             parent="Plumrocket_OutOfStock::main_structure"
+             dependsOnModule="Relieve_OutOfStock"
+             parent="Relieve_OutOfStock::main_structure"
              action="outofstock/index/"
-             resource="Plumrocket_OutOfStock::outofstock"/>
+             resource="Relieve_OutOfStock::outofstock"/>
 
-        <add id="Plumrocket_OutOfStock::configuration"
+        <add id="Relieve_OutOfStock::configuration"
              title="Configuration"
-             module="Plumrocket_OutOfStock"
+             module="Relieve_OutOfStock"
              sortOrder="60"
-             parent="Plumrocket_OutOfStock::main_structure"
+             parent="Relieve_OutOfStock::main_structure"
              action="adminhtml/system_config/edit/section/outofstock"
-             resource="Plumrocket_OutOfStock::outofstock"/>
+             resource="Relieve_OutOfStock::outofstock"/>
 
     </menu>
 </config>

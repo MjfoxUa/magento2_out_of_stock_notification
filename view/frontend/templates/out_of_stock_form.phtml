@@ -1,5 +1,5 @@
 <?php  /** @var \Magento\Catalog\Model\Product $currentProduct */ ?>
-<?php  /** @var \Plumrocket\OutOfStock\Block\ProductStockForm $block */ ?>
+<?php  /** @var \Relieve\OutOfStock\Block\ProductStockForm $block */ ?>
 
 <?php if($block->getEnableModul()) :?>
     <?php if(!$block->getCurrentProduct()->isAvailable()) :?>
@@ -14,5 +14,5 @@
 <?php endif; ?>
 <div id="result_form" ></div>
 <script>
-    require(['Plumrocket_OutOfStock/js/hello']);
+    require(['Relieve_OutOfStock/js/hello']);
 </script>

@@ -1,23 +1,42 @@
 <?php
+/**
+ * Relieve Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     Relieve_OutOfStock
+ * @copyright   Copyright (c) 2021 Relieve Inc.
+ * @license     End-user License Agreement
+ */
 
+declare(strict_types=1);
 
-namespace Plumrocket\OutOfStock\Setup;
+namespace Relieve\OutOfStock\Setup;
 
-class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
+use Magento\Framework\DB\Ddl\Table;
+use Magento\Framework\Setup\InstallSchemaInterface;
+use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\SchemaSetupInterface;
+
+class InstallSchema implements InstallSchemaInterface
 {
+    /**
+     * @param \Magento\Framework\Setup\SchemaSetupInterface   $setup
+     * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     * @throws \Zend_Db_Exception
+     */
     public function install(
-        \Magento\Framework\Setup\SchemaSetupInterface $setup,
-        \Magento\Framework\Setup\ModuleContextInterface $context
+        SchemaSetupInterface $setup,
+        ModuleContextInterface $context
     ) {
         $installer = $setup;
         $installer->startSetup();
-        if (!$installer->tableExists('plumrocket_outofstock_info')) {
+        if (!$installer->tableExists('relieve_outofstock_info')) {
             $table = $installer->getConnection()->newTable(
-                $installer->getTable('plumrocket_outofstock_info')
+                $installer->getTable('relieve_outofstock_info')
             )
             ->addColumn(
                 'id',
-                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                Table::TYPE_INTEGER,
                 255,
                 [
                     'identity' => true,
@@ -29,52 +48,53 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             )
                 ->addColumn(
                     'website_id',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    Table::TYPE_TEXT,
                     255,
                     ['nullable => false'],
                     'Website ID'
                 )
                 ->addColumn(
                     'product_id',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    Table::TYPE_TEXT,
                     255,
                     ['nullable => false'],
                     'Product ID'
                 )
                 ->addColumn(
                     'customer_id',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    Table::TYPE_TEXT,
                     255,
                     ['nullable => false'],
                     'Customer ID'
                 )
                 ->addColumn(
                     'customer_email',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    Table::TYPE_TEXT,
                     255,
                     ['nullable => false'],
                     'Customer Email'
                 )
                 ->addColumn(
                     'created_at',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+                    Table::TYPE_TIMESTAMP,
                     null,
-                    ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT],
+                    ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
                     'Created At'
                 );
             $installer->getConnection()->createTable($table);
 
             $installer->getConnection()->addIndex(
-                $installer->getTable('plumrocket_outofstock_info'),
+                $installer->getTable('relieve_outofstock_info'),
                 $setup->getIdxName(
-                    $installer->getTable('plumrocket_outofstock_info'),
-                    ['website', 'product_name', 'product_url', 'customer_name', 'customer_email','sku' ],
+                    $installer->getTable('relieve_outofstock_info'),
+                    ['website_id', 'product_name', 'product_url', 'customer_name', 'customer_email','sku' ],
                     \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
                 ),
-                ['website', 'product_name', 'product_url', 'customer_name', 'customer_email','sku'],
+                ['website_id', 'product_name', 'product_url', 'customer_name', 'customer_email','sku'],
                 \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
             );
         }
+
         $installer->endSetup();
     }
 }

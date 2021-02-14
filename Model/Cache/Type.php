@@ -1,6 +1,6 @@
 <?php
 
-namespace Plumrocket\OutOfStock\Model\Cache;
+namespace Relieve\OutOfStock\Model\Cache;
 
 class Type extends  \Magento\Framework\Cache\Frontend\Decorator\TagScope
 {
