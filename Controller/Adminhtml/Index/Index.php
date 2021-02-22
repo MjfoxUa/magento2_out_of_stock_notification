@@ -1,4 +1,14 @@
 <?php
+/**
+ * Relieve Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     Relieve_OutOfStock
+ * @copyright   Copyright (c) 2021 Relieve Inc.
+ * @license     End-user License Agreement
+ */
+
+declare(strict_types=1);
 
 namespace Relieve\OutOfStock\Controller\Adminhtml\Index;
 

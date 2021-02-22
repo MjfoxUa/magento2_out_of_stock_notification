@@ -20,7 +20,6 @@ use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
 use Relieve\OutOfStock\Controller\Index\Config;
-use Relieve\OutOfStock\Helper\Cache;
 use Relieve\OutOfStock\Model\ResourceModel\CollectionFactory;
 
 class CustomerTab extends Template
@@ -54,14 +53,11 @@ class CustomerTab extends Template
      * @var ProductRepository
      */
     private $productRepository;
+
     /**
      * @var ProductFactory
      */
     private $productloader;
-    /**
-     * @var Cache
-     */
-    private $cacheHelper;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                   $context
@@ -72,7 +68,6 @@ class CustomerTab extends Template
      * @param \Relieve\OutOfStock\Model\ResourceModel\CollectionFactory $collectionFactory
      * @param \Relieve\OutOfStock\Controller\Index\Config               $config
      * @param \Magento\Store\Model\StoreManagerInterface                $storeManager
-     * @param \Relieve\OutOfStock\Helper\Cache                          $cacheHelper
      * @param array                                                     $data
      */
     public function __construct(
@@ -84,10 +79,8 @@ class CustomerTab extends Template
         CollectionFactory $collectionFactory,
         Config $config,
         StoreManagerInterface $storeManager,
-        Cache $cacheHelper,
         array $data = []
     ) {
-        $this->cacheHelper = $cacheHelper;
         $this->productloader = $productloader;
         $this->productRepository = $productRepository;
         $this->collectionFactory = $collectionFactory;
@@ -107,14 +100,8 @@ class CustomerTab extends Template
     {
         $outOfStock = $this->collectionFactory->create();
         $outOfStock->addFieldToFilter('customer_id',$id);
-        $cacheId =$this->cacheHelper->getId('data_outofstock');
-        if($cache = $this->cacheHelper->load($cacheId)){
-            $cache = json_decode($cache, true);
-            return $cache;
-        }
-        $outOfStockData = $outOfStock->getData();
-        $this->cacheHelper->save(json_encode($outOfStockData),$cacheId);
-        return $outOfStockData;
+
+        return $outOfStock->getData();
     }
 
     public function getProductNameById($id)

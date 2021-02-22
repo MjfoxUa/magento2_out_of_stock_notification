@@ -1,4 +1,14 @@
 <?php
+/**
+ * Relieve Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     Relieve_OutOfStock
+ * @copyright   Copyright (c) 2021 Relieve Inc.
+ * @license     End-user License Agreement
+ */
+
+declare(strict_types=1);
 
 namespace Relieve\OutOfStock\Controller\Index;
 
@@ -76,7 +86,8 @@ class Saveform extends \Magento\Framework\App\Action\Action
                     ]);
                     $model->save();
                     $status = true;
-                    $messagee = (__('Your email '.$data['email'].' has been saved for out of stock notification.'));
+
+                    $messagee = (__('Your email %1 has been saved for out of stock notification.', $data['email'] ));
                 }
             }
             $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
@@ -85,6 +96,6 @@ class Saveform extends \Magento\Framework\App\Action\Action
         } catch (\Exception $e) {
             $this->logger->critical('Error message', ['exception' => $e]);
         }
-
     }
 }
+

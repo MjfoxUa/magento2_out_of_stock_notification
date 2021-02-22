@@ -1,15 +1,31 @@
 <?php
+/**
+ * Relieve Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     Relieve_OutOfStock
+ * @copyright   Copyright (c) 2021 Relieve Inc.
+ * @license     End-user License Agreement
+ */
+
+declare(strict_types=1);
 
 namespace Relieve\OutOfStock\Controller\Adminhtml\Stock;
 
+use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
 use Magento\Backend\App\Action\Context;
 use Relieve\OutOfStock\Model\ResourceModel\CollectionFactory;
 use Magento\Ui\Component\MassAction\Filter;
 use Magento\Framework\Controller\ResultFactory;
 
-class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionInterface
+class MassDelete extends Action implements HttpPostActionInterface
 {
+    /**
+     * @param Context           $context
+     * @param Filter            $filter
+     * @param CollectionFactory $collectionFactory
+     */
     public function __construct(
         Context $context,
         Filter $filter,
